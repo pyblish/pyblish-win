@@ -3,8 +3,9 @@ import sys
 
 bindir = os.path.dirname(__file__)
 repodir = os.path.dirname(bindir)
-suitedir = os.path.join(repodir, "pyblish-suite")
-pyqtdir = os.path.join(repodir, "python-qt5")
+libdir = os.path.join(repodir, "lib")
+suitedir = os.path.join(libdir, "pyblish-suite")
+pyqtdir = os.path.join(libdir, "python-qt5")
 
 
 def setup():
