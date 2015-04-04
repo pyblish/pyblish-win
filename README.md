@@ -7,7 +7,7 @@
 ```bash
 $ git clone https://github.com/pyblish/pyblish-win.git
 $ cd pyblish-win
-$ git submodule update --init --recursive
+$ install
 ```
 
 **Usage**
