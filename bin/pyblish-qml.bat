@@ -1,1 +1,1 @@
-python launcher.py pyblish_qml --console %*
+python %~dp0launcher.py pyblish_qml --console %*

@@ -1,1 +1,1 @@
-python launcher.py pyblish_endpoint --console %*
+python %~dp0launcher.py pyblish_endpoint --console %*
