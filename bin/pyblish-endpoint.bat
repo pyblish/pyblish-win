@@ -1,1 +1,1 @@
-python launcher.py pyblish_endpoint %*
+python launcher.py pyblish_endpoint --console %*

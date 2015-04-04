@@ -1,21 +1,37 @@
 import sys
 import subprocess
 
-from shared import setup_environment
+import shared
 
 
-def main(args):
+def main(args, async=False, console=False):
     args = list(args)
-    setup_environment()
+    shared.setup()
 
     program = args.pop(0)
-    executable = sys.executable
 
-    args = [executable, "-m", program] + args
-    app = subprocess.Popen(args)
+    args = [sys.executable, "-m", program] + args
+    kwargs = dict()
 
-    return app.communicate()
+    if console is False:
+        CREATE_NO_WINDOW = 0x08000000
+        kwargs["creationflags"] = CREATE_NO_WINDOW
+
+    app = subprocess.Popen(args, **kwargs)
+
+    if async is False:
+        return app.communicate()
 
 
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    args = sys.argv[1:]
+    kwargs = dict()
+
+    for flag in ("--console", "--async"):
+        try:
+            index = args.index(flag)
+            kwargs[args.pop(index).strip("-")] = True
+        except:
+            pass
+
+    main(args, **kwargs)
