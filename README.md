@@ -6,13 +6,11 @@
 
 ```bash
 $ git clone https://github.com/pyblish/pyblish-win.git
-$ cd pyblish-win
-$ install
+$ pyblish-win\install
 ```
 
 **Usage**
 
 ```bash
-$ cd bin
-$ pyblish-qml
+$ pyblish-win\bin\pyblish-qml
 ```
