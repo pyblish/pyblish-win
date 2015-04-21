@@ -4,18 +4,35 @@
 :: directories to your local PYTHONPATH. For further information about
 :: installation into a distributed environment, see the main Pyblish
 :: wiki: https://github.com/pyblish/pyblish/wiki
+::
+:: Usage:
+::   $ # To install locally, without modifying the users
+::   $ install
+::
+::   $ # To install globally
+::   $ install --global
 
 @echo off
 
-echo "Downloading Pyblish.."
+echo Installing Pyblish..
+
 pushd %~dp0
 git submodule update --init --recursive
 popd
 
-:: Add to PYTHONPATH
-echo "Installing to local system.."
-setx PYTHONPATH %~dp0python;%PYTHONPATH%
+:: Initialise environment variables
+set python=%~dp0python
+set integrations=%~dp0lib/pyblish-suite/pyblish-maya/pyblish_maya/pythonpath;%~dp0lib/pyblish-suite/pyblish-nuke/pyblish_nuke/nuke_path
 
-:: Install integrations
-echo "Installing integrations.."
-setx PYTHONPATH %~dp0lib/pyblish-suite/pyblish-maya/pyblish_maya/pythonpath;%~dp0lib/pyblish-suite/pyblish-nuke/pyblish_nuke/nuke_path;%PYTHONPATH%
+if "%1" == "--global" (
+  echo Installing globally..
+  setx PYTHONPATH %python%;%integrations%;%PYTHONPATH%
+
+) else (
+  echo Installing locally..
+  set PYTHONPATH=%python%;%integrations%;%PYTHONPATH%
+)
+
+echo
+echo Successfully installed Pyblish
+echo See https://github.com/pyblish/pyblish-win/wiki for more information
