@@ -33,6 +33,5 @@ if "%1" == "--global" (
   set PYTHONPATH=%libraries%;%integrations%;%PYTHONPATH%
 )
 
-echo
 echo Successfully installed Pyblish
 echo See https://github.com/pyblish/pyblish-win/wiki for more information
