@@ -1,16 +1,10 @@
-![image](https://cloud.githubusercontent.com/assets/2152766/6993768/63ab4958-daf7-11e4-9707-90f7c02771e6.png)
+![image](https://cloud.githubusercontent.com/assets/2152766/6998101/5c13946c-dbcd-11e4-968b-b357b7c60a06.png)
 
-# Pyblish for Windows
-
-**Install**
+- [Documentation](wiki)
 
 ```bash
+# Quick-start installation
 $ git clone https://github.com/pyblish/pyblish-win.git
-$ pyblish-win\install
-```
-
-**Usage**
-
-```bash
+$ pyblish-win\install --global
 $ pyblish-win\bin\pyblish-qml
 ```
