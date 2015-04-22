@@ -24,13 +24,14 @@ popd
 set libraries=%~dp0python
 set integrations=%~dp0lib\pyblish-suite\pyblish-maya\pyblish_maya\pythonpath;%~dp0lib\pyblish-suite\pyblish-nuke\pyblish_nuke\nuke_path
 
+set PYTHONPATH=%libraries%;%integrations%;%PYTHONPATH%
+
 if "%1" == "--global" (
   echo Installing globally..
   setx PYTHONPATH %libraries%;%integrations%;%PYTHONPATH%
 
 ) else (
   echo Installing locally..
-  set PYTHONPATH=%libraries%;%integrations%;%PYTHONPATH%
 )
 
 echo Successfully installed Pyblish
