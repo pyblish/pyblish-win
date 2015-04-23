@@ -1,9 +1,22 @@
 os: unstable
+environment:
+  my_token:
+    secure: XlmBNQjMHhzvYWeNCrCLfeNeYCRTdGxXRjUueeiOi6ITqld+wiv0EqxvzEiLIGe/
 install:
   - git submodule update --init --recursive
-  - choco install InnoSetup
+  - choco install -y InnoSetup
   - set PATH=%PATH%;"C:\Program Files (x86)\Inno Setup 5"
 build_script:
   - echo Running Inno Setup
-  - iscc JokerSetup.iss
+  - iscc setup.iss
   - dir
+deploy:
+  provider: GitHub
+  auth_token:
+    secure: $(my_token)
+  artifact: /dist/.*\.exe
+  draft: false
+  prerelease: false
+  on:
+    branch: master                 # release from master branch only
+    appveyor_repo_tag: true        # deploy on tag push only
