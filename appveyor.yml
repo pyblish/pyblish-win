@@ -8,7 +8,7 @@ install:
   - set PATH=%PATH%;"C:\Program Files (x86)\Inno Setup 5"
 build_script:
   - echo Building..
-  - build --clean --build {build}
+  - build --clean --build $(build)
   - dir
 deploy:
   provider: GitHub
