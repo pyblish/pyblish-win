@@ -120,12 +120,20 @@ def exe(src, dst, build):
     """
 
     print("Creating installer..")
+    try:
+        iscc = subprocess.check_output(["where", "iscc"]).strip()
+    except subprocess.CalledProcessError:
+        print("Could not find Inno Setup")
+        return 1
 
-    subprocess.call(["iscc",
+    setup = os.path.join(os.getcwd(), "setup.iss")
+
+    print("Compiling \"%s\" using \"%s\"" % (setup, iscc))
+    subprocess.call([iscc,
                      "/dMyVersion=%s" % version.version,
                      "/dMyBuild=%04d" % build,
                      "/dMyOutputDir=%s" % dst,
-                     "setup.iss"])
+                     setup])
 
     print("Successfully created installer")
 
