@@ -5,7 +5,9 @@ environment:
 install:
   - git submodule update --init --recursive
   - choco install -y InnoSetup
-  - set PATH=%PATH%;"C:\Program Files (x86)\Inno Setup 5"
+  - set INNOPATH=C:\Program Files (x86)\Inno Setup 5
+  - python -c "import os; print 'Inno Setup installation is correct: %s' % (os.path.exists(r'%INNOPATH%'))"
+  - set PATH=%PATH%;%INNOPATH%
 build_script:
   - echo Building..
   - build --clean --build %APPVEYOR_BUILD_NUMBER%
