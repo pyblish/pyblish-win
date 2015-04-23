@@ -24,6 +24,8 @@ popd
 set libraries=%~dp0python
 set integrations=%~dp0lib\pyblish-suite\pyblish-maya\pyblish_maya\pythonpath;%~dp0lib\pyblish-suite\pyblish-nuke\pyblish_nuke\nuke_path
 
+:: Make Pyblish accessible from local terminal
+:: regardless of whether or not --global was chosen.
 set PYTHONPATH=%libraries%;%integrations%;%PYTHONPATH%
 
 if "%1" == "--global" (
@@ -34,5 +36,6 @@ if "%1" == "--global" (
   echo Installing locally..
 )
 
+echo.
 echo Successfully installed Pyblish
 echo See https://github.com/pyblish/pyblish-win/wiki for more information
