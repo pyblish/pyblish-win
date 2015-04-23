@@ -1,5 +1,4 @@
 import os
-import sys
 
 bindir = os.path.abspath(os.path.dirname(__file__))
 repodir = os.path.dirname(bindir)
@@ -10,7 +9,6 @@ pyqtdir = os.path.join(libdir, "python-qt5")
 
 def setup():
     setup_environment()
-    setup_pyqt()
 
 
 def setup_environment():
@@ -24,10 +22,3 @@ def setup_environment():
 
     PYTHONPATH = os.environ.get("PYTHONPATH", "")
     os.environ["PYTHONPATH"] = pyqtdir + (os.pathsep + PYTHONPATH)
-
-
-def setup_pyqt():
-    sys.path.insert(0, pyqtdir)
-    import util
-    util.createqtconf()
-    sys.path.remove(pyqtdir)
