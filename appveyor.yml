@@ -5,8 +5,7 @@ environment:
 install:
   - git submodule update --init --recursive
   - choco install -y InnoSetup
-  - set INNOPATH=C:\Program Files (x86)\Inno Setup 5
-  - set PATH=%PATH%;%INNOPATH%
+  - set PATH=C:\Program Files (x86)\Inno Setup 5;%PATH%
 build_script:
   - echo Building..
   - build --clean --build %APPVEYOR_BUILD_NUMBER%
