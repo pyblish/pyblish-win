@@ -8,7 +8,7 @@ install:
   - set PATH=%PATH%;"C:\Program Files (x86)\Inno Setup 5"
 build_script:
   - echo Building..
-  - build --clean --build $(APPVEYOR_BUILD_NUMBER)
+  - build --clean --build %APPVEYOR_BUILD_NUMBER%
   - dir
 deploy:
   provider: GitHub
