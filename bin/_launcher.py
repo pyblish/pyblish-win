@@ -2,18 +2,18 @@ import os
 import sys
 import subprocess
 
-bindir = os.path.abspath(os.path.dirname(__file__))
-repodir = os.path.dirname(bindir)
-libdir = os.path.join(repodir, "lib")
-suitedir = os.path.join(libdir, "pyblish-suite")
-pyqtdir = os.path.join(libdir, "python-qt5")
+
+def setup(root):
+    _setup_environment(root)
 
 
-def setup():
-    _setup_environment()
+def _setup_environment(root):
+    root = root.rstrip("\\")
+    repodir = os.path.dirname(root)
+    libdir = os.path.join(repodir, "lib")
+    suitedir = os.path.join(libdir, "pyblish-suite")
+    pyqtdir = os.path.join(libdir, "python-qt5")
 
-
-def _setup_environment():
     for repo in ("pyblish",
                  "pyblish-maya",
                  "pyblish-endpoint",
@@ -26,13 +26,10 @@ def _setup_environment():
     os.environ["PYTHONPATH"] = pyqtdir + (os.pathsep + PYTHONPATH)
 
 
-def main(args, async=False, console=False):
-    args = list(args)
-    setup()
+def main(root, program, async=False, console=False):
+    setup(root)
 
-    program = args.pop(0)
-
-    args = [sys.executable, "-m", program] + args
+    args = [sys.executable, "-m", program]
     kwargs = dict()
 
     if console is False:
@@ -46,14 +43,14 @@ def main(args, async=False, console=False):
 
 
 if __name__ == '__main__':
-    args = sys.argv[1:]
-    kwargs = dict()
+    import argparse
 
-    for flag in ("--console", "--async"):
-        try:
-            index = args.index(flag)
-            kwargs[args.pop(index).strip("-")] = True
-        except:
-            pass
+    parser = argparse.ArgumentParser()
+    parser.add_argument("root")
+    parser.add_argument("program")
+    parser.add_argument("--console", action="store_true")
+    parser.add_argument("--async", action="store_true")
 
-    main(args, **kwargs)
+    kwargs = parser.parse_args()
+
+    main(**kwargs.__dict__)
