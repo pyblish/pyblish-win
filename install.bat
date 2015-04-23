@@ -15,6 +15,7 @@
 @echo off
 
 echo Installing Pyblish..
+echo.
 
 pushd %~dp0
 git submodule update --init --recursive
@@ -28,6 +29,7 @@ set integrations=%~dp0lib\pyblish-suite\pyblish-maya\pyblish_maya\pythonpath;%~d
 :: regardless of whether or not --global was chosen.
 set PYTHONPATH=%libraries%;%integrations%;%PYTHONPATH%
 
+echo.
 if "%1" == "--global" (
   echo Installing globally..
   setx PYTHONPATH %libraries%;%integrations%;%PYTHONPATH%
