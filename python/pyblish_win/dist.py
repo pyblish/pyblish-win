@@ -88,14 +88,6 @@ def bundle(src, dst):
 
     print("Collecting files..")
 
-    # Increment build
-    package_path = os.path.join(src, "package.json")
-    with open(package_path, "r+") as f:
-        package = json.load(f)
-        package["build"] += 1
-        f.seek(0)
-        json.dump(package, f, indent=4)
-
     col = collect(src)
 
     print("Copying files into /build")
@@ -118,7 +110,7 @@ def bundle(src, dst):
     return dst
 
 
-def exe(src, dst):
+def exe(src, dst, build):
     """Create installer using Inno Setup
 
     Arguments:
@@ -129,13 +121,9 @@ def exe(src, dst):
 
     print("Creating installer..")
 
-    package_path = os.path.join(src, "package.json")
-    with open(package_path) as f:
-        build = json.load(f)["build"]
-
     subprocess.call(["iscc",
                      "/dMyVersion=%s" % version.version,
-                     "/dMyBuild=%03d" % build,
+                     "/dMyBuild=%04d" % build,
                      "/dMyOutputDir=%s" % dst,
                      "setup.iss"])
 
@@ -147,6 +135,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("target")
     parser.add_argument("--clean", action="store_true")
+    parser.add_argument("--build", type=int, default=0)
 
     kwargs = parser.parse_args()
 
@@ -162,4 +151,4 @@ if __name__ == '__main__':
             raise Exception("Could not remove up build directory")
 
     bundle(src=base, dst=build)
-    exe(src=build, dst="dist")
+    exe(src=build, dst="dist", build=kwargs.build)

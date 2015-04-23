@@ -7,8 +7,8 @@ install:
   - choco install -y InnoSetup
   - set PATH=%PATH%;"C:\Program Files (x86)\Inno Setup 5"
 build_script:
-  - echo Running Inno Setup
-  - iscc setup.iss
+  - echo Building..
+  - build --clean --build {build}
   - dir
 deploy:
   provider: GitHub
