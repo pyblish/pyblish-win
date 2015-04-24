@@ -2,8 +2,16 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Pyblish"
-#define MyAppPublisher "Abstract Factory Limited"
+#define MyAppPublisher "Abstract Factory Ltd"
 #define MyAppURL "http://www.pyblish.com"
+#define PythonPath "{app}\python"
+#define NukeIntegration "{app}\python\integrations\nuke"
+#define MayaIntegration "{app}\python\integrations\maya"
+
+; These must be defined via command-line, e.g. /dMyVersion=1.0.3
+; #define MyVersion "1.0.0"
+; #define MyBuild "0"
+; #define MyOutputDir "dist"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -27,6 +35,20 @@ SetupIconFile=icon.ico
 Compression=lzma
 SolidCompression=yes
 ArchitecturesInstallIn64BitMode=x64
+
+; Tell Windows Explorer to reload the environment
+ChangesEnvironment=yes
+
+[Components]
+; Offer users a choice of which integrations to install (if any)
+Name: "main"; Description: "Pyblish"; Types: full compact custom; Flags: fixed
+Name: "maya"; Description: "Integrate with Autodesk Maya"; Types: full
+Name: "nuke"; Description: "Integrate with The Foundry Nuke"; Types: full
+
+[Registry]
+Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "PYTHONPATH"; ValueData: "{#PythonPath};{olddata}"; Components: main
+Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "PYTHONPATH"; ValueData: "{#MayaIntegration};{olddata}"; Components: maya
+Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "NUKE_PATH"; ValueData: "{#NukeIntegration};{olddata}"; Components: nuke
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

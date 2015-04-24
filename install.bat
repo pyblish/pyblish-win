@@ -21,21 +21,20 @@ pushd %~dp0
 git submodule update --init --recursive
 popd
 
-:: Initialise environment variables
-set libraries=%~dp0python
-set integrations=%~dp0lib\pyblish-suite\pyblish-maya\pyblish_maya\pythonpath;%~dp0lib\pyblish-suite\pyblish-nuke\pyblish_nuke\nuke_path
-
 :: Make Pyblish accessible from local terminal
 :: regardless of whether or not --global was chosen.
-set PYTHONPATH=%libraries%;%integrations%;%PYTHONPATH%
+set PYTHONPATH=%~dp0python;%~dp0python\integrations\maya;%PYTHONPATH%
+set NUKE_PATH=%~dp0python\integrations\nuke;%NUKE_PATH%
 
 echo.
 if "%1" == "--global" (
   echo Installing globally..
-  setx PYTHONPATH %libraries%;%integrations%;%PYTHONPATH%
 
-) else (
-  echo Installing locally..
+  :: Install Maya Integration
+  setx PYTHONPATH %~dp0python;%~dp0python\integrations\maya;%PYTHONPATH%
+
+  :: Install Nuke Integration
+  setx NUKE_PATH %~dp0python\integrations\nuke;%NUKE_PATH%
 )
 
 echo.
