@@ -7,7 +7,7 @@ install:
 
 build_script:
   - echo Building..
-  - build --clean --build %APPVEYOR_BUILD_NUMBER%
+  - build --clean
   - dir
 
 artifacts:
