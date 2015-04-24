@@ -7,6 +7,11 @@ build_script:
   - echo Building..
   - build --clean --build %APPVEYOR_BUILD_NUMBER%
   - dir
+
+artifacts:
+  - path: dist\*.exe
+    name: installer
+
 deploy:
   provider: Environment
   name: GitHub
