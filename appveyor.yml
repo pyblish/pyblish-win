@@ -1,8 +1,10 @@
 os: unstable
+
 install:
   - git submodule update --init --recursive
   - choco install -y InnoSetup
   - set PATH=C:\Program Files (x86)\Inno Setup 5;%PATH%
+
 build_script:
   - echo Building..
   - build --clean --build %APPVEYOR_BUILD_NUMBER%
@@ -15,3 +17,6 @@ artifacts:
 deploy:
   provider: Environment
   name: GitHub
+  on:
+    branch: master
+    appveyor_repo_tag: true
