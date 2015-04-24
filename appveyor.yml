@@ -1,7 +1,4 @@
 os: unstable
-environment:
-  my_token:
-    secure: XlmBNQjMHhzvYWeNCrCLfeNeYCRTdGxXRjUueeiOi6ITqld+wiv0EqxvzEiLIGe/
 install:
   - git submodule update --init --recursive
   - choco install -y InnoSetup
@@ -11,12 +8,5 @@ build_script:
   - build --clean --build %APPVEYOR_BUILD_NUMBER%
   - dir
 deploy:
-  provider: GitHub
-  auth_token:
-    secure: $(my_token)
-  artifact: /dist/.*\.exe
-  draft: false
-  prerelease: false
-  on:
-    branch: master                 # release from master branch only
-    appveyor_repo_tag: true        # deploy on tag push only
+  provider: Environment
+  name: GitHub
