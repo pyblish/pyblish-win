@@ -110,7 +110,7 @@ def bundle(src, dst):
     return dst
 
 
-def exe(src, dst, build):
+def exe(src, dst):
     """Create installer using Inno Setup
 
     Arguments:
@@ -131,7 +131,6 @@ def exe(src, dst, build):
     print("Compiling \"%s\" using \"%s\"" % (setup, iscc))
     subprocess.call([iscc,
                      "/dMyVersion=%s" % version.version,
-                     "/dMyBuild=%04d" % build,
                      "/dMyOutputDir=%s" % dst,
                      setup])
 
@@ -143,7 +142,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("target")
     parser.add_argument("--clean", action="store_true")
-    parser.add_argument("--build", type=int, default=0)
 
     kwargs = parser.parse_args()
 
@@ -159,4 +157,4 @@ if __name__ == '__main__':
             raise Exception("Could not remove up build directory")
 
     bundle(src=base, dst=build)
-    exe(src=build, dst="dist", build=kwargs.build)
+    exe(src=build, dst="dist")

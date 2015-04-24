@@ -10,7 +10,6 @@
 
 ; These must be defined via command-line, e.g. /dMyVersion=1.0.3
 ; #define MyVersion "1.0.0"
-; #define MyBuild "0"
 ; #define MyOutputDir "dist"
 
 [Setup]
@@ -30,7 +29,7 @@ DefaultGroupName={#MyAppName}
 AllowNoIcons=yes
 LicenseFile=LICENSE
 OutputDir={#MyOutputDir}
-OutputBaseFilename=pyblish-{#MyVersion}-x64-build{#MyBuild}
+OutputBaseFilename=pyblish-{#MyVersion}-x64-setup
 SetupIconFile=icon.ico
 Compression=lzma
 SolidCompression=yes
