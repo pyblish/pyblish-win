@@ -49,6 +49,13 @@ Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "PYTHONPATH";
 Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "PYTHONPATH"; ValueData: "{#MayaIntegration};{olddata}"; Components: maya
 Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "NUKE_PATH"; ValueData: "{#NukeIntegration};{olddata}"; Components: nuke
 
+[Icons]
+Name: "{group}\Pyblish"; Filename: "{app}\bin\pyblish-qml.bat"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
+Name: "{group}\Endpoint"; Filename: "{app}\bin\pyblish-endpoint.bat"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
+Name: "{group}\Python Interpreter"; Filename: "{app}\bin\python.bat"; WorkingDir: "{userdocs}"; IconFilename: "{app}\icon.ico"
+Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
+Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
+
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
@@ -65,8 +72,3 @@ end;
 [Files]
 Source: "build\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
-
-[Icons]
-Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
-Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
-
