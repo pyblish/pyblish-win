@@ -40,3 +40,4 @@ if "%1" == "--global" (
 echo.
 echo Successfully installed Pyblish
 echo See https://github.com/pyblish/pyblish-win/wiki for more information
+pause

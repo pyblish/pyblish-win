@@ -8,3 +8,4 @@ git reset --hard
 git pull
 git submodule update --init --recursive
 popd
+pause

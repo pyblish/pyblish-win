@@ -7,3 +7,4 @@
 pushd %~dp0
 git reset --hard
 popd
+pause
