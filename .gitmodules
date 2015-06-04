@@ -1,6 +1,3 @@
 [submodule "lib/python-qt5"]
 	path = lib/python-qt5
 	url = https://github.com/pyqt/python-qt5.git
-[submodule "lib/pyblish-suite"]
-	path = lib/pyblish-suite
-	url = https://github.com/pyblish/pyblish-suite.git
