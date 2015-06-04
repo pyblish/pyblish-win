@@ -25,16 +25,16 @@ popd
 :: regardless of whether or not --global was chosen.
 set PYTHONPATH=%~dp0python;%~dp0python\integrations\maya;%PYTHONPATH%
 set NUKE_PATH=%~dp0python\integrations\nuke;%NUKE_PATH%
+set HOUDINI_PATH=%~dp0python\integrations\houdini;%HOUDINI_PATH%
 
 echo.
 if "%1" == "--global" (
   echo Installing globally..
 
-  :: Install Maya Integration
-  setx PYTHONPATH %~dp0python;%~dp0python\integrations\maya;%PYTHONPATH%
-
-  :: Install Nuke Integration
-  setx NUKE_PATH %~dp0python\integrations\nuke;%NUKE_PATH%
+  :: Install integrations
+  setx PYTHONPATH %PYTHONPATH%
+  setx NUKE_PATH %NUKE_PATH%
+  setx HOUDINI_PATH %HOUDINI_PATH%
 )
 
 echo.

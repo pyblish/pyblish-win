@@ -47,7 +47,7 @@ def augment_path():
     """Add Python 2.7 to PATH"""
     python_path = os.path.join(repository_dir, "lib", "Python27")
     assert os.path.isdir(python_path)
-    if not python_path in os.environ.get("PATH", ""):
+    if python_path not in os.environ.get("PATH", ""):
         var = python_path + os.pathsep + os.environ.get("PATH", "")
         os.environ["PATH"] = var
 
@@ -58,3 +58,35 @@ def augment_pythonpath():
         print "Adding %s to PYTHONPATH"
         var = python_dir + os.pathsep + os.environ.get("PYTHONPATH", "")
         os.environ["PYTHONPATH"] = var
+
+
+def where(program):
+    r"""Parse PATH for executables
+
+    Windows note:
+        PATHEXT yields possible suffixes, such as .exe, .bat and .cmd
+
+    Usage:
+        >> where("python")
+        'c:\\python27\\python.exe'
+
+    """
+
+    suffixes = [""]
+
+    try:
+        # Append Windows suffixes, such as .exe, .bat and .cmd
+        suffixes.extend(os.environ.get("PATHEXT").split(os.pathsep))
+    except:
+        pass
+
+    for path in os.environ["PATH"].split(os.pathsep):
+
+        # A path may be empty.
+        if not path:
+            continue
+
+        for suffix in suffixes:
+            full_path = os.path.join(path, program + suffix)
+            if os.path.isfile(full_path):
+                return full_path

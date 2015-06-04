@@ -7,6 +7,7 @@
 #define PythonPath "{app}\python"
 #define NukeIntegration "{app}\python\integrations\nuke"
 #define MayaIntegration "{app}\python\integrations\maya"
+#define HoudiniIntegration "{app}\python\integrations\houdini"
 
 ; These must be defined via command-line, e.g. /dMyVersion=1.0.3
 ; #define MyVersion "1.0.0"
@@ -43,11 +44,13 @@ ChangesEnvironment=yes
 Name: "main"; Description: "Pyblish"; Types: full compact custom; Flags: fixed
 Name: "maya"; Description: "Integrate with Autodesk Maya"; Types: full
 Name: "nuke"; Description: "Integrate with The Foundry Nuke"; Types: full
+Name: "houdini"; Description: "Integrate with SideFx Houdini"; Types: full
 
 [Registry]
 Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "PYTHONPATH"; ValueData: "{#PythonPath};{olddata}"; Components: main
 Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "PYTHONPATH"; ValueData: "{#MayaIntegration};{olddata}"; Components: maya
 Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "NUKE_PATH"; ValueData: "{#NukeIntegration};{olddata}"; Components: nuke
+Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "HOUDINI_PATH"; ValueData: "&;{#HoudiniIntegration};{olddata}"; Components: houdini
 
 [Icons]
 Name: "{group}\Pyblish"; Filename: "{app}\bin\pyblish-qml.bat"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
