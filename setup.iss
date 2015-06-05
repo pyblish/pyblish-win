@@ -4,7 +4,7 @@
 #define MyAppName "Pyblish"
 #define MyAppPublisher "Abstract Factory Ltd"
 #define MyAppURL "http://www.pyblish.com"
-#define PythonPath "{app}"
+#define PythonPath "{app}\pythonpath"
 #define NukeIntegration "{app}\lib\pyblish-x\integrations\nuke"
 #define MayaIntegration "{app}\lib\pyblish-x\integrations\maya"
 #define HoudiniIntegration "{app}\lib\pyblish-x\integrations\houdini"

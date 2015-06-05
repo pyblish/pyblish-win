@@ -3,21 +3,38 @@ import sys
 import subprocess
 
 
+def setup(root):
+    pythonpath = os.path.realpath(os.path.join(root, "..", "pythonpath"))
+    pyqtdir = os.path.realpath(os.path.join(root, "..", "lib", "python-qt5"))
+
+    PYTHONPATH = os.environ.get("PYTHONPATH", "")
+    os.environ["PYTHONPATH"] = pythonpath + os.pathsep + pyqtdir + os.pathsep + PYTHONPATH
+
+
 def main(root, program, async=False, console=False, args=None):
-    repodir = os.path.join(__file__, "..", "..")
-    repodir = os.path.realpath(repodir)
-    os.environ["PYTHONPATH"] = repodir + os.pathsep + os.environ.get("PYTHONPATH", "")
+    """Command-line entry point
+
+    Arguments:
+        root (str): Directory from which executable is launched
+        program (str): Name of program, e.g. pyblish-qml
+        async (bool, optional): Run asynchronously, default is False
+        console (bool, optional): Run with console, default is False
+        args (list, optional): Additional arguments passed to program
+
+    """
+
+    setup(root)
 
     args = [sys.executable, "-m", program] + args or []
     kwargs = dict()
 
-    if not console:
+    if console is False:
         CREATE_NO_WINDOW = 0x08000000
         kwargs["creationflags"] = CREATE_NO_WINDOW
 
     app = subprocess.Popen(args, **kwargs)
 
-    if not async:
+    if async is False:
         return app.communicate()
 
 
