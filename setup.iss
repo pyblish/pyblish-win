@@ -4,10 +4,10 @@
 #define MyAppName "Pyblish"
 #define MyAppPublisher "Abstract Factory Ltd"
 #define MyAppURL "http://www.pyblish.com"
-#define PythonPath "{app}\python"
-#define NukeIntegration "{app}\python\integrations\nuke"
-#define MayaIntegration "{app}\python\integrations\maya"
-#define HoudiniIntegration "{app}\python\integrations\houdini"
+#define PythonPath "{app}"
+#define NukeIntegration "{app}\lib\pyblish-x\integrations\nuke"
+#define MayaIntegration "{app}\lib\pyblish-x\integrations\maya"
+#define HoudiniIntegration "{app}\lib\pyblish-x\integrations\houdini"
 
 ; These must be defined via command-line, e.g. /dMyVersion=1.0.3
 ; #define MyVersion "1.0.0"
@@ -53,8 +53,8 @@ Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "NUKE_PATH"; 
 Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "HOUDINI_PATH"; ValueData: "&;{#HoudiniIntegration};{olddata}"; Components: houdini
 
 [Icons]
-Name: "{group}\Pyblish"; Filename: "{app}\bin\pyblish-qml.bat"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
-Name: "{group}\Endpoint"; Filename: "{app}\bin\pyblish-endpoint.bat"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
+Name: "{group}\Pyblish QML"; Filename: "{app}\bin\pyblish-qml.bat"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
+Name: "{group}\Pyblish RPC"; Filename: "{app}\bin\pyblish-rpc.bat"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
 Name: "{group}\Python Interpreter"; Filename: "{app}\bin\python.bat"; WorkingDir: "{userdocs}"; IconFilename: "{app}\icon.ico"
 Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"

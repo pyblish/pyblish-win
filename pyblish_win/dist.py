@@ -67,6 +67,7 @@ def collect(base):
                     "^(test.bat)$",
                     "^(update.bat)$",
                     "^(setup.iss)$",
+                    "^(appveyor.yaml)$",
                     "^[.]",
                     )):
                 continue
