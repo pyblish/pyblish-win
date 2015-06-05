@@ -7,7 +7,6 @@ from nose.tools import (
 )
 
 import pyblish_win.util
-pyblish_win.util.augment_pythonpath()
 
 original_path = os.environ["PATH"]
 temp_dir = None
