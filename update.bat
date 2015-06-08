@@ -4,6 +4,7 @@
 
 @echo off
 pushd %~dp0
+git checkout master
 git reset --hard
 git pull
 git submodule update --init --recursive

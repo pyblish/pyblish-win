@@ -5,6 +5,7 @@
 
 @echo off
 pushd %~dp0
+git checkout master
 git reset --hard
 git clean -xffd
 popd
