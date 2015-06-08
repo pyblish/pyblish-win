@@ -6,5 +6,6 @@
 @echo off
 pushd %~dp0
 git reset --hard
+git clean -xffd
 popd
 pause
