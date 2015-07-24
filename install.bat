@@ -13,4 +13,4 @@
 ::   $ install --global
 
 @echo off
-python _install.py %*
+python %~dp0_install.py %*
