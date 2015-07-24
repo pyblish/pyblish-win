@@ -153,6 +153,9 @@ def main(globally, verbose, mock, mock_error, accept_defaults):
                 print("https://github.com/pyblish/pyblish-win/wiki")
                 break
 
+    else:
+        sys.stdout.write("\n")
+
     sys.exit(0)
 
 
@@ -249,6 +252,8 @@ if __name__ == '__main__':
     except SystemExit as e:
         if e.code == 0:
             print("Entering subshell..")
+            time.sleep(0.5)
+
             # Enter subshell where local variables are present.
             dirname = os.path.abspath(os.path.dirname(__file__))
             try:
