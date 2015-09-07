@@ -1,3 +1,5 @@
+"""Bootstrap a given Pyblish application prior to launching"""
+
 import os
 import sys
 import subprocess
@@ -8,10 +10,11 @@ def setup(root):
     pyqtdir = os.path.realpath(os.path.join(root, "..", "lib", "python-qt5"))
 
     PYTHONPATH = os.environ.get("PYTHONPATH", "")
-    os.environ["PYTHONPATH"] = pythonpath + os.pathsep + pyqtdir + os.pathsep + PYTHONPATH
+    os.environ["PYTHONPATH"] = os.pathsep.join(
+        [pythonpath, pyqtdir, PYTHONPATH])
 
 
-def main(root, program, async=False, console=False, args=None):
+def main(root, program, args=None):
     """Command-line entry point
 
     Arguments:
@@ -25,28 +28,38 @@ def main(root, program, async=False, console=False, args=None):
 
     setup(root)
 
-    args = [sys.executable, "-m", program] + args or []
-    kwargs = dict()
+    args = [sys.executable,
+            "-u",  # Unbuffered, for outputting to stdout below
+            "-m", program] + args or []
 
-    if console is False:
-        CREATE_NO_WINDOW = 0x08000000
-        kwargs["creationflags"] = CREATE_NO_WINDOW
+    CREATE_NO_WINDOW = 0x08000000
+    popen = subprocess.Popen(args,
+                             creationflags=CREATE_NO_WINDOW,
+                             stdout=subprocess.PIPE,
+                             stderr=subprocess.STDOUT)
 
-    app = subprocess.Popen(args, **kwargs)
+    for line in iter(popen.stdout.readline, b""):
+        sys.stdout.write(line)
 
-    if async is False:
-        return app.communicate()
+    sys.stdout.write("Got here?")
+
+    popen.communicate()  # Block until done
 
 
 if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("root")
-    parser.add_argument("program")
-    parser.add_argument("--console", action="store_true")
-    parser.add_argument("--async", action="store_true")
+    parser.add_argument("root", help="Absolute path to /bin directory")
+    parser.add_argument("program", help="Name of program, e.g. pyblish_qml")
+    parser.add_argument("--console", action="store_true", help="Deprecated")
+    parser.add_argument("--async", action="store_true", help="Deprecated")
 
     kwargs, args = parser.parse_known_args()
+
+    if kwargs.__dict__.pop("console"):
+        print("--console has been deprecated")
+    if kwargs.__dict__.pop("async"):
+        print("--async has been deprecated")
 
     main(args=args, **kwargs.__dict__)

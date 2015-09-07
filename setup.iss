@@ -6,6 +6,7 @@
 #define MyAppURL "http://www.pyblish.com"
 #define PythonPath "{app}\pythonpath"
 #define NukeIntegration "{app}\lib\pyblish-x\integrations\nuke"
+#define HieroIntegration "{app}\lib\pyblish-x\integrations\hiero"
 #define MayaIntegration "{app}\lib\pyblish-x\integrations\maya"
 #define HoudiniIntegration "{app}\lib\pyblish-x\integrations\houdini"
 
@@ -32,6 +33,7 @@ LicenseFile=LICENSE
 OutputDir={#MyOutputDir}
 OutputBaseFilename=pyblish-{#MyVersion}-x64-setup
 SetupIconFile=icon.ico
+UninstallDisplayIcon=icon.ico
 Compression=lzma
 SolidCompression=yes
 ArchitecturesInstallIn64BitMode=x64
@@ -44,18 +46,19 @@ ChangesEnvironment=yes
 Name: "main"; Description: "Pyblish"; Types: full compact custom; Flags: fixed
 Name: "maya"; Description: "Integrate with Autodesk Maya"; Types: full
 Name: "nuke"; Description: "Integrate with The Foundry Nuke"; Types: full
+Name: "hiero"; Description: "Integrate with The Foundry Hiero"; Types: full
 Name: "houdini"; Description: "Integrate with SideFx Houdini"; Types: full
 
 [Registry]
 Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "PYTHONPATH"; ValueData: "{#PythonPath};{olddata}"; Components: main
 Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "PYTHONPATH"; ValueData: "{#MayaIntegration};{olddata}"; Components: maya
 Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "NUKE_PATH"; ValueData: "{#NukeIntegration};{olddata}"; Components: nuke
+Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "HIERO_PLUGIN_PATH"; ValueData: "{#HieroIntegration};{olddata}"; Components: hiero
 Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "HOUDINI_PATH"; ValueData: "&;{#HoudiniIntegration};{olddata}"; Components: houdini
 
 [Icons]
-Name: "{group}\Pyblish QML"; Filename: "{app}\bin\pyblish-qml.bat"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
-Name: "{group}\Pyblish RPC"; Filename: "{app}\bin\pyblish-rpc.bat"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
-Name: "{group}\Python Interpreter"; Filename: "{app}\bin\python.bat"; WorkingDir: "{userdocs}"; IconFilename: "{app}\icon.ico"
+Name: "{group}\Pyblish"; Filename: "{app}\bin\pyblish-standalone.bat"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
+Name: "{group}\Pyblish Interpreter"; Filename: "{app}\bin\python.bat"; WorkingDir: "{userdocs}"; IconFilename: "{app}\icon.ico"
 Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 
