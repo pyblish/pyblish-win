@@ -41,8 +41,6 @@ def main(root, program, args=None):
     for line in iter(popen.stdout.readline, b""):
         sys.stdout.write(line)
 
-    sys.stdout.write("Got here?")
-
     popen.communicate()  # Block until done
 
 
