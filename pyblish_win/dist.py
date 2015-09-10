@@ -154,7 +154,7 @@ if __name__ == '__main__':
         try:
             shutil.rmtree(build)
         except:
-            raise Exception("Could not remove up build directory")
+            raise Exception("Could not remove build directory")
 
     bundle(src=base, dst=build)
     exe(src=build, dst="dist")
