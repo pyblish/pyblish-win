@@ -58,8 +58,7 @@ Root: HKCU; Subkey: "Environment"; ValueType: expandsz; ValueName: "HOUDINI_PATH
 
 [Icons]
 Name: "{group}\Pyblish"; Filename: "{app}\bin\pyblish-tray.bat"; WorkingDir: "{app}"; IconFilename: "{app}\icon.ico"
-Name: "{group}\Pyblish Interpreter"; Filename: "{app}\bin\python.bat"; WorkingDir: "{userdocs}"; IconFilename: "{app}\icon.ico"
-Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
+Name: "{group}\Python"; Filename: "{app}\bin\python.bat"; WorkingDir: "{userdocs}"; IconFilename: "{app}\icon.ico"
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
 
 [Languages]
