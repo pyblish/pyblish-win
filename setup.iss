@@ -5,10 +5,10 @@
 #define MyAppPublisher "Abstract Factory Ltd"
 #define MyAppURL "http://www.pyblish.com"
 #define PythonPath "{app}\pythonpath"
-#define NukeIntegration "{app}\lib\pyblish-x\integrations\nuke"
-#define HieroIntegration "{app}\lib\pyblish-x\integrations\hiero"
-#define MayaIntegration "{app}\lib\pyblish-x\integrations\maya"
-#define HoudiniIntegration "{app}\lib\pyblish-x\integrations\houdini"
+#define NukeIntegration "{app}\lib\pyblish\integrations\nuke"
+#define HieroIntegration "{app}\lib\pyblish\integrations\hiero"
+#define MayaIntegration "{app}\lib\pyblish\integrations\maya"
+#define HoudiniIntegration "{app}\lib\pyblish\integrations\houdini"
 
 ; These must be defined via command-line, e.g. /dMyVersion=1.0.3
 ; #define MyVersion "1.0.0"

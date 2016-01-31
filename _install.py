@@ -120,7 +120,7 @@ def main(globally, verbose, mock, mock_error, accept_defaults):
 
     sys.stdout.write("\nWriting environment variables..")
     dirname = os.path.abspath(os.path.dirname(__file__))
-    integrations = os.path.join(dirname, "lib", "pyblish-x", "integrations")
+    integrations = os.path.join(dirname, "lib", "pyblish", "integrations")
 
     environment = {
         "PYTHONPATH": ";".join([
