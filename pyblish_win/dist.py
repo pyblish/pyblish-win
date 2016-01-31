@@ -3,8 +3,6 @@ import re
 import shutil
 import subprocess
 
-import version
-
 
 def collect(base):
     """Collect files for distribution
@@ -129,8 +127,13 @@ def exe(src, dst):
     setup = os.path.join(os.getcwd(), "setup.iss")
 
     print("Compiling \"%s\" using \"%s\"" % (setup, iscc))
+    BUILD = os.environ.get("APPVEYOR_BUILD_NUMBER", "0")
+    VERSION = os.path.join(__file__, "..", "..", "lib", "pyblish", "VERSION")
+    with open(VERSION) as f:
+        VERSION = f.read()
+
     subprocess.call([iscc,
-                     "/dMyVersion=%s" % version.version,
+                     "/dMyVersion=%s-build%s" % (VERSION, BUILD),
                      "/dMyOutputDir=%s" % dst,
                      setup])
 
