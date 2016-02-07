@@ -3,10 +3,3 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/ra92bnuaakqqjmih?svg=true)](https://ci.appveyor.com/project/mottosso/pyblish-win)
 
 - [Documentation](../../wiki)
-
-```bash
-# Quick-start installation
-$ git clone https://github.com/pyblish/pyblish-win.git
-$ pyblish-win\install --global
-$ pyblish-win\bin\pyblish-qml
-```
