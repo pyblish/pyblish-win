@@ -7,6 +7,7 @@
 ```bash
 # Quick-start installation
 $ git clone https://github.com/pyblish/pyblish-win.git
-$ pyblish-win\install --global
-$ pyblish-win\bin\pyblish-qml
+$ cd pyblish-win
+$ install --global
+$ bin\pyblish-qml
 ```
